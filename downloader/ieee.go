@@ -18,6 +18,34 @@ import (
 // Todo(yuting): make all urls into config file
 // Todo(yuting): make a conference-to-conference_number map
 
+// ******** Exported ******** //
+
+type IEEEDownloader struct{}
+
+func (*IEEEDownloader) Process(query string) error {
+	// 1. search
+	// 2. no result or download the first matched paper
+	// 3. post it to server provided upload API
+	return nil
+}
+
+// ******** Internal ******** //
+
+type ieeeSearchResult struct{}
+
+// Function ieeeSearch should return all search results on the first page
+func ieeeSearch(query string) ([]ieeeSearchResult, error) {
+	return nil, nil
+}
+
+func ieeeGetPdf(paperId string) error {
+	return nil
+}
+
+func ieeeUploadPdf(pdfPath string) error {
+	return nil
+}
+
 func get_issue_number(conference_number string) int {
 	// Concatenate url
 	meta_data_url := Str_Concate("https://ieeexplore.ieee.org/rest/publication/home/metadata?pubid=", conference_number)
