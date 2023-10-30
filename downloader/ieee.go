@@ -1,13 +1,18 @@
-package crawler_conference
+// Package downloader is used to first search, then download the first matched paper from given
+// @Author: Yuting Xie
+// @Date: 2023-10-30
+
+package downloader
 
 import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	. "my_ieee/internel/utils"
 	"net/http"
 	"strings"
 	"time"
+
+	. "github.com/lovelydett/my_ieee/internel/utils"
 )
 
 // Todo(yuting): make all urls into config file

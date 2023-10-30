@@ -1,3 +1,3 @@
-module my_ieee
+module github.com/lovelydett/my_ieee
 
-go 1.18
+go 1.20
