@@ -1,4 +1,4 @@
-// Package downloader is used to first search, then download the first matched paper from given
+// Package downloader is used to download the given paper from IEEE XPLORE and upload to server filerepo
 // @Author: Yuting Xie
 // @Date: 2023-10-30
 
@@ -20,29 +20,51 @@ import (
 
 // ******** Exported ******** //
 
-type IEEEDownloader struct{}
+type IEEE struct{}
 
-func (*IEEEDownloader) Process(query string) error {
-	// 1. search
-	// 2. no result or download the first matched paper
-	// 3. post it to server provided upload API
+// Function Process downloads the given paper from IEEE XPLORE and upload to server filerepo
+func (*IEEE) Process(paperId string) error {
+	// 1. Get pdf
+	buffer, err := ieeeGetPdf(paperId)
+
+	// 2.
 	return nil
 }
 
 // ******** Internal ******** //
 
-type ieeeSearchResult struct{}
+func ieeeGetPdf(paperId string) ([]byte, error) {
+	link := Str_Concate("https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=", paperId, "&ref=")
+	// Build http request header
+	req, err := http.NewRequest("GET", link, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36")
+	referer := Str_Concate("https://ieeexplore.ieee.org/xpl/conhome/", paperId, "/proceeding")
+	req.Header.Set("Referer", referer)
+	// Send http GET request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	// Read response body
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
 
-// Function ieeeSearch should return all search results on the first page
-func ieeeSearch(query string) ([]ieeeSearchResult, error) {
-	return nil, nil
+	return body, nil
 }
 
-func ieeeGetPdf(paperId string) error {
-	return nil
-}
-
-func ieeeUploadPdf(pdfPath string) error {
+func ieeeUploadPdf(paperId string) error {
 	return nil
 }
 
