@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	. "github.com/lovelydett/my_ieee/internel/utils"
+	. "my_ieee/internel/utils"
 )
 
 // Todo(yuting): make all urls into config file
@@ -23,12 +23,11 @@ import (
 type IEEE struct{}
 
 // Function Process downloads the given paper from IEEE XPLORE and upload to server filerepo
-func (*IEEE) Process(paperId string) error {
+func (*IEEE) Process(paperId string) ([]byte, error) {
 	// 1. Get pdf
 	buffer, err := ieeeGetPdf(paperId)
 
-	// 2.
-	return nil
+	return buffer, err
 }
 
 // ******** Internal ******** //
