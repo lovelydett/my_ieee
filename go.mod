@@ -1,13 +1,15 @@
-module my_ieee
+module github.com/lovelydett/my_ieee
 
 go 1.20
 
-require gopkg.in/yaml.v3 v3.0.1
+require (
+	github.com/confluentinc/confluent-kafka-go v1.9.2
+	github.com/go-redis/redis v6.15.9+incompatible
+	gopkg.in/yaml.v2 v2.3.0
+	gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
-	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 // indirect
-	github.com/alecthomas/units v0.0.0-20231202071711-9a357b53e9c9 // indirect
-	github.com/confluentinc/confluent-kafka-go v1.9.2 // indirect
-	gopkg.in/alecthomas/kingpin.v2 v2.2.6 // indirect
-	gopkg.in/confluentinc/confluent-kafka-go.v1 v1.8.2 // indirect
+	github.com/onsi/ginkgo v1.16.5 // indirect
+	github.com/onsi/gomega v1.31.1 // indirect
 )
