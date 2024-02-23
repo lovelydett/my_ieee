@@ -1,6 +1,6 @@
 // Package config_util loads the configuration for the application
 
-package config_util
+package utils
 
 import (
 	"fmt"

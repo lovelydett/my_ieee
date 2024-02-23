@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	. "my_ieee/internel/utils"
+	. "github.com/lovelydett/my_ieee/internel/utils"
 )
 
 // Todo(yuting): make all urls into config file
